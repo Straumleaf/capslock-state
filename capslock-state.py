@@ -87,5 +87,3 @@ def main(args):
 
 if __name__ == '__main__':
     main(sys.argv)
-else:
-    print('App designed to work as Waybar plug-in. Sorry!')
