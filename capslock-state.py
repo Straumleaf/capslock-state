@@ -3,7 +3,6 @@
 import os                                      # to run sound player and work with arguments
 import sys                                     # to work with arguments
 import pickle                                  # to work with serealizing/de-serealizing variable
-#import evdev                                  # to work with input devices
 from evdev import InputDevice, ecodes
 
 # file name and path to temporary store Caps Lock state
@@ -55,10 +54,6 @@ def main(args):
     # Sound switch (by default - Off)  
     sound_sw = 'sound-off'
 
-    # initializing Caps Lock state variables
-    #previous_caps_state = 0
-    #current_caps_state = 0
-
     match args_numb:
         case 1:
             state_msg = ERROR
@@ -92,3 +87,5 @@ def main(args):
 
 if __name__ == '__main__':
     main(sys.argv)
+else:
+    print('App designed to work as Waybar plug-in. Sorry!')
