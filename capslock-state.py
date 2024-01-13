@@ -38,11 +38,6 @@ def file_ops(ops, caps_state = None):
 
     file.close()
     return caps_state
-
-# function to play sound if Caps Lock state were changed
-def making_beep(prv_state, curr_state):
-   if prv_state != curr_state:
-      os.system(SND_PLAYER + ' ' + SND_FILE_BELL)
    
 # MAIN -------------------------------------------
 
@@ -80,8 +75,9 @@ def main(args):
 
     print(state_msg)
     # in case of changing states making a sound
-    if sound_sw == 'sound-on':
-        making_beep(previous_caps_state, current_caps_state)   
+    if sound_sw == 'sound-on' and previous_caps_state != current_caps_state:
+        # playing sound file with player
+        os.system(SND_PLAYER + ' ' + SND_FILE_BELL)
     # storing Caps Lock state in file and exit
     file_ops('wb', current_caps_state)
 
