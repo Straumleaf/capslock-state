@@ -9,6 +9,11 @@ from evdev import InputDevice, ecodes
 TMP_PATH = '/tmp/'
 CAPS_STATE_FILE = '_caps_led.state'
 
+# file operations
+READ_BINARY = 'rb'
+WRITE_BINARY = 'wb'
+CREATE_BINARY = 'xb'
+
 # defining sound player and sets of sounds to choose from
 SND_PLAYER = 'paplay'
 SND_FILE_BELL = '/usr/share/sounds/freedesktop/stereo/bell.oga'
@@ -33,7 +38,7 @@ def file_ops(ops, caps_state = None):
                pickle.dump(caps_state, file)
 
     except FileNotFoundError:
-        file = open(TMP_PATH + CAPS_STATE_FILE, 'xb')
+        file = open(TMP_PATH + CAPS_STATE_FILE, CREATE_BINARY)
         caps_state = 0
 
     file.close()
@@ -62,7 +67,7 @@ def main(args):
     keyboard = InputDevice(device_event_number)
 
     # loading previous Caps Lock state if available
-    previous_caps_state = file_ops('rb')
+    previous_caps_state = file_ops(READ_BINARY)
 
     # reading current Caps Lock state from keyboard
     current_caps_state = keyboard.leds()
@@ -79,7 +84,7 @@ def main(args):
         # playing sound file with player
         os.system(SND_PLAYER + ' ' + SND_FILE_BELL)
     # storing Caps Lock state in file and exit
-    file_ops('wb', current_caps_state)
+    file_ops(WRITE_BINARY, current_caps_state)
 
 if __name__ == '__main__':
     main(sys.argv)
