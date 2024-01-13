@@ -44,7 +44,7 @@ def file_ops(ops, caps_state = None):
 def main(args):
     # reading args 
     # argv1 - device event path; argv2 - sound On/Off (default: Off)
-    args_numb = len(sys.argv)
+    args_numb = len(args)
 
     # Sound switch (by default - Off)  
     sound_sw = 'sound-off'
