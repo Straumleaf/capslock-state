@@ -72,11 +72,8 @@ def main(args):
     # reading current Caps Lock state from keyboard
     current_caps_state = keyboard.leds()
 
-    # determine and printing Caps Lock state
-    if current_caps_state == [1]:
-        state_msg = CAPS_ON
-    else:
-        state_msg = CAPS_OFF
+    # comprehension to determine and asigning Caps Lock state
+    state_msg = CAPS_ON if current_caps_state == [1] else CAPS_OFF
 
     print(state_msg)
     # in case of changing states making a sound
